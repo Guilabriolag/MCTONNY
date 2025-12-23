@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>McClone - Cardápio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="McCardapio.css">
+</head>
+<body>
+
+<div class="background-fix"></div>
+
+<header>
+  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-Ir4F4TvYrzskM6mp1dslF7bvIe0uZxHhjApklssORuUPdSe9EnIdIkSQ7cO8Kk_hfA-HvJsXjdzWlq57a6tP-YEJEx3R0nCKzx2zJ-C-S5WaZs6UqkHlgcIGr_lkZ0mh8i3OTlH0r5cj3brnr-9V2112GW_cUq1sWjIAUZqAfLMKtIy6LizXvIMb6ufc/s724/Clipped_image_20251002_033103.png" class="logo-top">
+  <h1>McClone</h1>
+</header>
+
+<nav class="main-nav">
+  <button onclick="selecionar('lanches')" class="btn-nav active" id="btn-lanches">LANCHES</button>
+  <button onclick="selecionar('porcoes')" class="btn-nav" id="btn-porcoes">PORÇÕES</button>
+  <button onclick="selecionar('beirutes')" class="btn-nav" id="btn-beirutes">BEIRUTES</button>
+  <button onclick="selecionar('bebidas')" class="btn-nav" id="btn-bebidas">BEBIDAS</button>
+</nav>
+
+<main id="sabores" class="categoria-container"></main>
+
+<div id="carrinhoToggle" onclick="toggleCarrinho()">🛒 <span id="cart-count">0</span></div>
+
+<section id="carrinho">
+  <textarea id="pedido" readonly></textarea>
+
+  <div class="entrega-grid">
+    <button onclick="mostrarDados('retirar')" class="btn-opcao-gigante">RETIRAR</button>
+    <button onclick="mostrarDados('delivery')" class="btn-opcao-gigante">DELIVERY</button>
+  </div>
+
+  <div id="entregaCampos" style="display:none;">
+    <input id="endereco" class="input-grande" placeholder="Rua e Número">
+    <select id="bairro" class="input-grande">
+      <option value="">Selecione o Bairro</option>
+      <option value="CENTRO - R$3">CENTRO - R$3</option>
+      <option value="JD BOM JESUS - R$3">JD BOM JESUS - R$3</option>
+      <option value="GREEN HILLS - R$10">GREEN HILLS - R$10</option>
+    </select>
+  </div>
+
+  <select id="pagamento" class="input-grande" onchange="mostrarTroco()">
+    <option value="">Forma de Pagamento</option>
+    <option>Pix</option>
+    <option>Cartão</option>
+    <option>Dinheiro</option>
+  </select>
+
+  <input id="valorTroco" class="input-grande" style="display:none" placeholder="Troco para quanto?">
+
+  <button id="enviar" onclick="enviarPedido()">FINALIZAR NO WHATSAPP</button>
+</section>
+
+<script src="McCardapio.js"></script>
+</body>
+</html>
