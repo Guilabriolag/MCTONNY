@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>McClone – Cardápio</title>
+<title>McClone - Cardápio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="McCardapio.css">
 </head>
@@ -29,18 +29,14 @@
 </div>
 
 <section id="carrinho">
-  <div class="carrinho-header">
-    <button class="btn-voltar" onclick="toggleCarrinho()">⬅ VOLTAR</button>
-    <h2>RESUMO DO PEDIDO</h2>
-  </div>
+  <h2>RESUMO DO PEDIDO</h2>
 
   <textarea id="pedido" readonly></textarea>
 
-  <div class="total">
-    TOTAL: R$ <span id="total">0.00</span>
+  <div class="carrinho-acoes">
+    <button class="btn-secundario" onclick="editarPedido()">✏️ Editar Pedido</button>
+    <button class="btn-secundario" onclick="toggleCarrinho()">⬅️ Voltar ao Cardápio</button>
   </div>
-
-  <button class="btn-editar" onclick="editarPedido()">✏ EDITAR PEDIDO</button>
 
   <div class="entrega-grid">
     <button class="btn-opcao-gigante" onclick="mostrarDados('retirar')">VOU RETIRAR</button>
@@ -51,9 +47,9 @@
     <input id="endereco" class="input-grande" placeholder="Rua e Número">
     <select id="bairro" class="input-grande">
       <option value="">Selecione o Bairro</option>
-      <option value="CENTRO - R$3">CENTRO - R$ 3</option>
-      <option value="JD BOM JESUS - R$3">JD BOM JESUS - R$ 3</option>
-      <option value="GREEN HILLS - R$10">GREEN HILLS - R$ 10</option>
+      <option>CENTRO - R$ 3</option>
+      <option>JD BOM JESUS - R$ 3</option>
+      <option>GREEN HILLS - R$ 10</option>
     </select>
   </div>
 
@@ -69,8 +65,14 @@
   <button id="enviar" onclick="enviarPedido()">FINALIZAR NO WHATSAPP</button>
 </section>
 
-<div id="alert" class="alert-overlay">
+<div id="custom-alert-overlay" class="alert-overlay">
   <div class="alert-box">
     <h3 id="alert-title"></h3>
     <p id="alert-msg"></p>
-    <button class="bt
+    <button class="btn-alert" onclick="fecharAlerta()">OK, ENTENDI</button>
+  </div>
+</div>
+
+<script src="McCardapio.js"></script>
+</body>
+</html>
