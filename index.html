@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>McClone - Fast Food</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{
+      margin:0;
+      background:#c40000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      font-family:Arial, sans-serif;
+      color:#ffd700;
+    }
+    .splash{
+      text-align:center;
+      animation:fade 2s ease;
+    }
+    .splash img{
+      width:180px;
+      margin-bottom:20px;
+    }
+    @keyframes fade{
+      from{opacity:0;transform:scale(.9)}
+      to{opacity:1;transform:scale(1)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="splash">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-Ir4F4TvYrzskM6mp1dslF7bvIe0uZxHhjApklssORuUPdSe9EnIdIkSQ7cO8Kk_hfA-HvJsXjdzWlq57a6tP-YEJEx3R0nCKzx2zJ-C-S5WaZs6UqkHlgcIGr_lkZ0mh8i3OTlH0r5cj3brnr-9V2112GW_cUq1sWjIAUZqAfLMKtIy6LizXvIMb6ufc/s724/Clipped_image_20251002_033103.png">
+    <h2>McClone Fast-Food</h2>
+    <p>Sabor rápido de verdade 🍔</p>
+  </div>
+
+  <script>
+    setTimeout(()=>{ window.location.href="McCardapio.html"; },3000);
+  </script>
+
+</body>
+</html>
