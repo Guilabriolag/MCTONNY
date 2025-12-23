@@ -1,29 +1,183 @@
 :root{
- --red:#c40000;
- --yellow:#ffd700;
- --dark:#0a0a0a;
+  --red:#c40000;
+  --yellow:#ffd700;
+  --dark:#0a0a0a;
 }
+
+*{margin:0;padding:0;box-sizing:border-box}
+
 body{
- margin:0;
- font-family:Arial,sans-serif;
- background:var(--dark);
- color:#fff;
+  font-family: Arial, sans-serif;
+  background: var(--dark);
+  color:#fff;
 }
+
 .background-fix{
- position:fixed;
- inset:0;
- background:url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYqkRasMisMb8dzZdrlWDZ-tnyfek6CgmP0Fu5OKJaYWhuehZiQXEY706k6apf6pi3gawiXdoJaER2b-_Aizq6xQCILz1uOGbu3QFDrtfctoUMd6km3m8uA1_BL3Kvoz6pwkVKzdX0wcgplM4GDHqHPHynPlmcejJDiKD8GaUzP0WruBRwl-SQSCJ1w7Bm/s554/images%20(63).jpeg') center/cover;
- filter:brightness(.3);
- z-index:-1;
+  position:fixed;
+  inset:0;
+  background:url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjYqkRasMisMb8dzZdrlWDZ-tnyfek6CgmP0Fu5OKJaYWhuehZiQXEY706k6apf6pi3gawiXdoJaER2b-_Aizq6xQCILz1uOGbu3QFDrtfctoUMd6km3m8uA1_BL3Kvoz6pwkVKzdX0wcgplM4GDHqHPHynPlmcejJDiKD8GaUzP0WruBRwl-SQSCJ1w7Bm/s554/images%20(63).jpeg') center/cover;
+  filter: brightness(0.25);
+  z-index:-1;
 }
+
 header{text-align:center;padding:20px}
 .logo-top{width:120px}
-.main-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.btn-nav{padding:18px;border-radius:12px;background:#222;color:#fff;font-weight:900}
-.btn-nav.active{background:var(--red)}
-.item-card{background:#111;padding:20px;border-radius:15px;margin-bottom:15px}
-.item-card h3{color:var(--yellow)}
-.btn-add{background:var(--yellow);color:#000;padding:10px 20px;border-radius:10px;font-weight:900}
-#carrinhoToggle{position:fixed;bottom:20px;right:20px;background:var(--red);padding:20px;border-radius:50%}
-#carrinho{position:fixed;top:100%;left:0;width:100%;height:100%;background:#000;padding:20px;transition:.4s}
+
+.main-nav{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  padding:10px;
+}
+
+.btn-nav{
+  padding:20px;
+  font-weight:900;
+  border-radius:14px;
+  background:#222;
+  color:#fff;
+  border:2px solid #444;
+}
+
+.btn-nav.active{
+  background:var(--red);
+  border-color:var(--yellow);
+}
+
+.categoria-container{
+  padding:15px;
+  margin-bottom:120px;
+}
+
+.item-card{
+  background:#111;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:15px;
+}
+
+.item-card h3{
+  color:var(--yellow);
+  font-size:1.6rem;
+}
+
+.item-card p{
+  font-size:1.1rem;
+  margin:10px 0;
+}
+
+.btn-add{
+  padding:14px 24px;
+  background:var(--yellow);
+  color:#000;
+  font-weight:900;
+  border-radius:12px;
+}
+
+#carrinhoToggle{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:85px;
+  height:85px;
+  background:var(--red);
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-size:1.3rem;
+}
+
+#carrinho{
+  position:fixed;
+  top:100%;
+  left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  padding:20px;
+  transition:.4s;
+  overflow:auto;
+}
+
 #carrinho.open{top:0}
+
+textarea{
+  width:100%;
+  height:200px;
+  margin:15px 0;
+  font-size:1.2rem;
+  padding:15px;
+}
+
+.entrega-grid{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.btn-opcao-gigante{
+  height:95px;
+  width:48%;
+  font-size:1.4rem;
+  font-weight:900;
+  border-radius:18px;
+  border:3px solid #444;
+  background:#1f1f1f;
+  color:#fff;
+}
+
+.btn-opcao-gigante.active{
+  background:var(--red);
+  border-color:var(--yellow);
+  color:#000;
+  box-shadow:0 0 15px rgba(255,215,0,.7);
+}
+
+.input-grande{
+  width:100%;
+  padding:18px;
+  margin-bottom:10px;
+  font-size:1.2rem;
+}
+
+#enviar{
+  width:100%;
+  padding:24px;
+  font-size:1.4rem;
+  font-weight:900;
+  background:#25d366;
+  border-radius:16px;
+}
+
+.alert-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.alert-box{
+  width:85%;
+  padding:30px;
+  background:#111;
+  border-radius:22px;
+  border:3px solid var(--yellow);
+  text-align:center;
+}
+
+.alert-box h3{font-size:1.8rem}
+.alert-box p{font-size:1.3rem;margin:15px 0}
+
+.btn-alert{
+  width:100%;
+  padding:20px;
+  font-size:1.3rem;
+  font-weight:900;
+  background:var(--red);
+  color:#fff;
+  border-radius:15px;
+}
