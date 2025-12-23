@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>McClone - Cardápio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="McCardapio.css">
+  <meta charset="UTF-8">
+  <title>McClone - Cardápio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="McCardapio.css">
 </head>
 <body>
 
@@ -16,31 +16,35 @@
 </header>
 
 <nav class="main-nav">
-  <button onclick="selecionar('lanches')" class="btn-nav active" id="btn-lanches">LANCHES</button>
-  <button onclick="selecionar('porcoes')" class="btn-nav" id="btn-porcoes">PORÇÕES</button>
-  <button onclick="selecionar('beirutes')" class="btn-nav" id="btn-beirutes">BEIRUTES</button>
-  <button onclick="selecionar('bebidas')" class="btn-nav" id="btn-bebidas">BEBIDAS</button>
+  <button class="btn-nav active" onclick="selecionar('lanches')" id="btn-lanches">LANCHES</button>
+  <button class="btn-nav" onclick="selecionar('porcoes')" id="btn-porcoes">PORÇÕES</button>
+  <button class="btn-nav" onclick="selecionar('beirutes')" id="btn-beirutes">BEIRUTES</button>
+  <button class="btn-nav" onclick="selecionar('bebidas')" id="btn-bebidas">BEBIDAS</button>
 </nav>
 
 <main id="sabores" class="categoria-container"></main>
 
-<div id="carrinhoToggle" onclick="toggleCarrinho()">🛒 <span id="cart-count">0</span></div>
+<div id="carrinhoToggle" onclick="toggleCarrinho()">
+  🛒 <span id="cart-count">0</span>
+</div>
 
 <section id="carrinho">
+  <h2>RESUMO DO PEDIDO</h2>
+
   <textarea id="pedido" readonly></textarea>
 
   <div class="entrega-grid">
-    <button onclick="mostrarDados('retirar')" class="btn-opcao-gigante">RETIRAR</button>
-    <button onclick="mostrarDados('delivery')" class="btn-opcao-gigante">DELIVERY</button>
+    <button class="btn-opcao-gigante" onclick="mostrarDados('retirar')">VOU RETIRAR</button>
+    <button class="btn-opcao-gigante" onclick="mostrarDados('delivery')">DELIVERY</button>
   </div>
 
-  <div id="entregaCampos" style="display:none;">
+  <div id="entregaCampos">
     <input id="endereco" class="input-grande" placeholder="Rua e Número">
     <select id="bairro" class="input-grande">
       <option value="">Selecione o Bairro</option>
-      <option value="CENTRO - R$3">CENTRO - R$3</option>
-      <option value="JD BOM JESUS - R$3">JD BOM JESUS - R$3</option>
-      <option value="GREEN HILLS - R$10">GREEN HILLS - R$10</option>
+      <option>CENTRO - R$ 3</option>
+      <option>JD BOM JESUS - R$ 3</option>
+      <option>GREEN HILLS - R$ 10</option>
     </select>
   </div>
 
@@ -51,10 +55,18 @@
     <option>Dinheiro</option>
   </select>
 
-  <input id="valorTroco" class="input-grande" style="display:none" placeholder="Troco para quanto?">
+  <input id="valorTroco" class="input-grande" placeholder="Troco para quanto?">
 
   <button id="enviar" onclick="enviarPedido()">FINALIZAR NO WHATSAPP</button>
 </section>
+
+<div id="custom-alert-overlay" class="alert-overlay">
+  <div class="alert-box">
+    <h3 id="alert-title"></h3>
+    <p id="alert-msg"></p>
+    <button class="btn-alert" onclick="fecharAlerta()">OK, ENTENDI</button>
+  </div>
+</div>
 
 <script src="McCardapio.js"></script>
 </body>
