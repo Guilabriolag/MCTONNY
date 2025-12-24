@@ -55,6 +55,14 @@ const cardapio = {
     { n: "46 – CALABRESA ACEBOLADA", p: 40.00, d: "Calabresa fatiada com cebola." },
     { n: "47 – CONTRAFILÉ ACEBOLADO", p: 50.00, d: "Contrafilé em tiras com cebola." }
   ]
+  bebidas: [
+    { n: "Coca-Cola Lata", p: 6.00, d: "Lata 350ml - Gelada" },
+    { n: "Coca-Cola 2L", p: 13.00, d: "Ideal para a família" },
+    { n: "Guaraná Kuat 2L", p: 10.00, d: "Gelado" },
+    { n: "Fanta Laranja Lata", p: 6.00, d: "Lata 350ml" },
+    { n: "Água Sem Gás", p: 4.00, d: "Garrafa 500ml" },
+    { n: "Suco de Laranja", p: 8.00, d: "Copo 400ml - Natural" }
+],
 };
 
 let categoriaAtiva = "lanches";
