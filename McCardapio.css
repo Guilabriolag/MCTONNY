@@ -38,15 +38,18 @@ header {
 }
 
 .logo-top {
-  width: 180px; /* Logo maior */
+  width: 250px; /* Altere aqui: 250px é um ótimo tamanho, mas pode testar 300px se quiser maior */
   height: auto;
-  border-radius: 0; /* Sem arredondamento */
-  border: none; /* Sem contorno */
-  box-shadow: none; /* Sem sombra externa */
+  border-radius: 0; 
+  border: none; 
+  box-shadow: none; 
   margin-bottom: 15px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  
+  /* Adicione esta linha para garantir que ela não estoure o ecrã em telemóveis pequenos */
+  max-width: 90%; 
 }
 
 header h1 {
