@@ -1,0 +1,97 @@
+:root {
+    --yellow: #FFBC0D;
+    --red: #DB0007;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    background-color: #000;
+}
+
+/* Fundo com a nova imagem e claridade 0.33 */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZl1L_GUxSnW2SBMcChsfViUS_eviLezZiHj-EZhH0cwEP4nv2JsUTdCZKQk0bv0NrzIn2vxO8-MGYpICfo1pHAQv8wpU0SkimX5WCvBxrvdygWkZro62UAtAER0e62qsn-corewoc0s2mRf959lhbfcfjV29QNoBH7AU7PPlHEaxQAYGV4qnCZipXUlKX/s678/images%20(52).jpeg') center/cover no-repeat;
+    filter: brightness(0.33); /* Claridade solicitada */
+    z-index: 1;
+}
+
+.splash-container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Logo em 300px conforme solicitado */
+.logo-main {
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.welcome-text h3 {
+    color: var(--yellow);
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 900;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+
+.welcome-text p {
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.actions {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-splash {
+    padding: 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.btn-splash:active {
+    transform: scale(0.95);
+}
+
+.btn-cardapio {
+    background-color: var(--red);
+    color: var(--white);
+    border: 2px solid var(--yellow);
+}
+
+.btn-atendente {
+    background-color: #25d366; /* Verde WhatsApp */
+    color: var(--white);
+}
