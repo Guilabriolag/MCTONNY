@@ -1,258 +1,166 @@
 const cardapio = {
-  lanches:[
-    {n:"McDog",p:12},
-    {n:"X-Burguer",p:14},
-    {n:"X-Salada",p:16},
-    {n:"X-Bacon",p:18},
-    {n:"X-Egg",p:17},
-    {n:"X-Tudo",p:22}
-  ],
-  porcoes:[
-    {n:"Batata P",p:10},
-    {n:"Batata M",p:15},
-    {n:"Batata G",p:20},
-    {n:"Calabresa",p:22}
-  ],
-  beirutes:[
-    {n:"Beirute Frango",p:28},
-    {n:"Beirute Carne",p:30},
-    {n:"Beirute Misto",p:32}
-  ],
-  bebidas:[
-    {n:"Coca Lata",p:6},
-    {n:"Guaraná Lata",p:6},
-    {n:"Coca 2L",p:12},
-    {n:"Suco Laranja",p:8},
-    {n:"Cerveja Lata",p:7}
-  ]
-};
-
-let categoria="lanches";
-let contador=0;
-let total=0;
-
-function selecionar(cat){
-  categoria=cat;
-  document.querySelectorAll(".btn-nav").forEach(b=>b.classList.remove("active"));
-  document.getElementById("btn-"+cat).classList.add("active");
-  render();
-}
-
-function render(){
-  const box=document.getElementById("sabores");
-  box.innerHTML="";
-  cardapio[categoria].forEach(item=>{
-    box.innerHTML+=`
-      <div class="item-card">
-        <h3>${item.n}</h3>
-        <p class="preco">R$ ${item.p.toFixed(2)}</p>
-        <button class="btn-add" onclick="add('${item.n}',${item.p})">ADICIONAR</button>
-      </div>`;
-  });
-}
-
-function add(nome,preco){
-  document.getElementById("pedido").value+=`${categoria.slice(0,-1)}: ${nome} - R$ ${preco.toFixed(2)}\n`;
-  contador++;
-  total+=preco;
-  document.getElementById("cart-count").innerText=contador;
-  alerta("Adicionado","Item incluído no pedido");
-}
-
-function editarPedido(){
-  document.getElementById("pedido").value="";
-  contador=0;
-  total=0;
-  document.getElementById("cart-count").innerText="0";
-}
-
-function toggleCarrinho(){
-  document.getElementById("carrinho").classList.toggle("open");
-}
-
-function mostrarDados(tipo){
-  document.getElementById("entregaCampos").style.display =
-    tipo==="delivery"?"block":"none";
-
-  document.querySelectorAll(".btn-opcao-gigante")
-    .forEach(b=>b.classList.remove("active"));
-
-  tipo==="delivery"
-    ? document.querySelectorAll(".btn-opcao-gigante")[1].classList.add("active")
-    : document.querySelectorAll(".btn-opcao-gigante")[0].classList.add("active");
-}
-
-function mostrarTroco(){
-  document.getElementById("valorTroco").style.display =
-    pagamento.value==="Dinheiro"?"block":"none";
-}
-
-function enviarPedido(){
-  const txt=encodeURIComponent(document.getElementById("pedido").value);
-  window.open(`https://wa.me/5511943198316?text=*PEDIDO McClone*%0A${txt}`);
-}
-
-function alerta(t,m){
-  document.getElementById("alert-title").innerText=t;
-  document.getElementById("alert-msg").innerText=m;
-  document.getElementById("custom-alert-overlay").style.display="flex";
-}
-
-function fecharAlerta(){
-  document.getElementById("custom-alert-overlay").style.display="none";
-}
-
-selecionar("lanches");
-// Cardápio completo organizado por categorias [cite: 14, 22-66]
-const cardapio = {
   lanches: [
-    { n: "1 - DOG SIMPLES", p: 16.00, d: "Salsicha, queijo, milho, batata palha, ketchup e maionese" },
-    { n: "2 - DOG EGG", p: 21.00, d: "Salsicha, ovo, queijo, milho, batata palha, ketchup e maionese" },
-    { n: "6 - DOG BACON", p: 21.00, d: "Salsicha, bacon, queijo, milho, batata palha, ketchup e maionese" },
-    { n: "17 - X-EGG", p: 21.00, d: "Hambúrguer, ovo, queijo, presunto, maionese e ketchup" },
-    { n: "20 - X-SALADA", p: 20.00, d: "Hambúrguer, queijo, alface, tomate, maionese e ketchup" },
-    { n: "21 - X-TUDO", p: 28.00, d: "Hambúrguer, calabresa, bacon, salame, queijo, ovo, salada e ketchup" },
-    { n: "30 - MC TITAN", p: 90.00, d: "3 hambúrgueres, calabresa, bacon, salame, 3 salsichas, 3 ovos, queijo, fritas + Kuat 2L" }
+    { n: "1 – DOG SIMPLES", p: 16.00, d: "Salsicha, queijo, milho, batata palha, ketchup, maionese e pão de banha." },
+    { n: "2 – DOG EGG", p: 21.00, d: "Salsicha, ovo, queijo, milho, batata palha, ketchup, maionese e pão de banha." },
+    { n: "3 – DOG CALABRESA", p: 21.00, d: "Salsicha, calabresa, queijo, milho, batata palha, ketchup, maionese e pão de banha." },
+    { n: "4 – DOG CATUPIRY", p: 21.00, d: "Salsicha, catupiry, queijo, milho, batata palha e pão de banha." },
+    { n: "5 – DOG BACON", p: 21.00, d: "Salsicha, bacon, queijo, milho, batata palha, ketchup, maionese e pão de banha." },
+    { n: "6 – DOG SALAME", p: 21.00, d: "Salsicha, salame, queijo, milho, batata palha, ketchup, maionese e pão de banha." },
+    { n: "7 – DOG CHEDDAR", p: 21.00, d: "Salsicha, cheddar, queijo, milho, batata palha e pão de banha." },
+    { n: "8 – DOG SALADA", p: 21.00, d: "Salsicha, alface, tomate, queijo, milho, batata palha, ketchup, maionese e pão de banha." },
+    { n: "9 – DOG FRANGO", p: 21.00, d: "Salsicha, frango, queijo, milho, batata palha, maionese e pão de banha." },
+    { n: "10 – MISTO QUENTE", p: 14.00, d: "Queijo, presunto, maionese e pão francês." },
+    { n: "11 – BAURU", p: 14.00, d: "Queijo, presunto, tomate, orégano, maionese e pão francês." },
+    { n: "12 – AMERICANO", p: 23.00, d: "Hambúrguer, queijo, presunto, alface, tomate, ovo, maionese e ketchup." },
+    { n: "13 – CALABRESA VINAGRETE", p: 24.00, d: "Calabresa, vinagrete, queijo e pão francês." },
+    { n: "14 – CHURRASCO VINAGRETE", p: 32.00, d: "Contrafilé, vinagrete, queijo, maionese e pão francês." },
+    { n: "15 – X-MAIONESE", p: 20.00, d: "Hambúrguer, queijo, maionese e pão de hambúrguer." },
+    { n: "16 – X-BURGUER", p: 20.00, d: "Hambúrguer, queijo, presunto, maionese e ketchup." },
+    { n: "17 – X-EGG", p: 21.00, d: "Hambúrguer, ovo, queijo, presunto, maionese e ketchup." },
+    { n: "18 – X-CALABRESA", p: 24.00, d: "Hambúrguer, calabresa, queijo, maionese e ketchup." },
+    { n: "19 – X-BACON", p: 24.00, d: "Hambúrguer, bacon, queijo, maionese e ketchup." },
+    { n: "20 – X-SALADA", p: 20.00, d: "Hambúrguer, queijo, alface, tomate, maionese e ketchup." },
+    { n: "21 – X-TUDO", p: 28.00, d: "Hambúrguer, calabresa, bacon, salame, queijo, presunto, ovo e salada." }
   ],
-  porcoes: [
-    { n: "44 - MC PORÇÃO", p: 65.00, d: "Batata frita, calabresa, bacon e cheddar + Kuat 2L" },
-    { n: "45 - BATATA COM CHEDDAR", p: 35.00, d: "Batata frita crocante com cobertura de cheddar" },
-    { n: "46 - CALABRESA ACEBOLADA", p: 40.00, d: "Porção de calabresa com cebola" }
+  mclanches: [
+    { n: "22 – MC FRANGO", p: 24.00, d: "Frango desfiado, catupiry, alface, queijo, maionese e pão de hambúrguer." },
+    { n: "23 – MC CHEDDAR", p: 27.00, d: "Hambúrguer, ovo, alface, tomate, cheddar + refrigerante." },
+    { n: "24 – MC CATUPIRY", p: 23.00, d: "Hambúrguer, presunto, queijo, alface, catupiry e pão de hambúrguer." },
+    { n: "25 – MC DOGÃO", p: 23.00, d: "Hambúrguer, salsicha, salame, presunto, queijo, maionese e ketchup." },
+    { n: "26 – MC TONNY FELIZ", p: 35.00, d: "Hambúrguer, queijo, alface, salame, milho, surpresa + refri lata." },
+    { n: "27 – MC MILHO", p: 20.00, d: "Hambúrguer, queijo, milho, maionese, ketchup e pão de hambúrguer." },
+    { n: "28 – SUPER MC TONNY", p: 25.00, d: "2 hambúrgueres, alface, queijo, salame, bacon, maionese e ketchup." },
+    { n: "29 – MC SALAME", p: 25.00, d: "Hambúrguer, salame, queijo, ovo, alface, tomate, maionese e ketchup." },
+    { n: "30 – MC TITAN", p: 90.00, d: "Gigante: 3 carnes, bacon, calabresa, salame, 3 ovos, fritas + Kuat 2L." },
+    { n: "34 – X-TUDO NO PRATO", p: 35.00, d: "Hambúrguer, calabresa, bacon, ovo, queijo, salame, salada e fritas." },
+    { n: "35 – AMERICANO NO PRATO", p: 32.00, d: "Hambúrguer, ovo, queijo, presunto, alface, tomate e fritas." },
+    { n: "36 – SUPER MC NO PRATO", p: 35.00, d: "2 hambúrgueres, bacon, salame, queijo, alface, tomate e fritas." }
   ],
   beirutes: [
-    { n: "31 - Beirute de Hambúrguer", p: 40.00, d: "Hambúrguer, calabresa, bacon, ovo, salame, queijo e salada" },
-    { n: "33 - Beirute de Frango", p: 38.00, d: "Frango desfiado, queijo, presunto, alface, tomate e maionese" }
+    { n: "31 – Beirute Hambúrguer", p: 40.00, d: "Hambúrguer, calabresa, bacon, ovo, salame, salada e queijo." },
+    { n: "32 – Beirute Contrafilé", p: 48.00, d: "Contrafilé, calabresa, bacon, ovo, alface, tomate e queijo." },
+    { n: "33 – Beirute Frango", p: 38.00, d: "Frango desfiado, queijo, presunto, alface, tomate e maionese." }
   ],
-  bebidas: [
-    { n: "Coca-Cola Lata", p: 6.00, d: "350ml" },
-    { n: "Coca-Cola 2L", p: 12.00, d: "Gelada" },
-    { n: "Guaraná Kuat 2L", p: 10.00, d: "Gelada" }
+  combos: [
+    { n: "37 – MC BURGUER DUPLO", p: 40.00, d: "2 carnes, cheddar, bacon, salada + fritas + refri lata." },
+    { n: "38 – MC BURGUER TRIPLO", p: 42.00, d: "3 carnes, cheddar, bacon, salada + fritas + refri lata." },
+    { n: "39 – MC SALADA COMBO", p: 40.00, d: "Carne, cheddar, bacon, ovo, cebola, salada + fritas + refri lata." },
+    { n: "40 – CHICKEN TONNY", p: 45.00, d: "Frango empanado, mussarela, bacon, ovo, alface + fritas + refri lata." },
+    { n: "41 – CHICKEN DUPLO", p: 51.00, d: "2 frangos empanados, bacon, ovo, alface + fritas + refri lata." },
+    { n: "43 – VEGETARIANO", p: 28.00, d: "Alface, tomate, cebola, molho especial, queijo + fritas + refri lata." }
+  ],
+  porcoes: [
+    { n: "44 – MC PORÇÃO", p: 65.00, d: "Batata frita, calabresa, bacon e cheddar + Kuat 2L." },
+    { n: "45 – BATATA CHEDDAR", p: 35.00, d: "Porção generosa de batata com cheddar." },
+    { n: "46 – CALABRESA ACEBOLADA", p: 40.00, d: "Calabresa fatiada com cebola." },
+    { n: "47 – CONTRAFILÉ ACEBOLADO", p: 50.00, d: "Contrafilé em tiras com cebola." }
   ]
 };
 
-let categoriaAtual = "lanches";
-let itensPedido = [];
-let totalProdutos = 0;
-let taxaEntrega = 0;
-let tipoPedido = "retirar";
-
-// Inicialização
-document.addEventListener("DOMContentLoaded", () => {
-  selecionar("lanches"); [cite: 20]
-});
+let categoriaAtiva = "lanches";
+let itensNoCarrinho = [];
+let valorTotalProdutos = 0;
+let valorTaxaEntrega = 0;
+let modalidadePedido = "retirar";
 
 function selecionar(cat) {
-  categoriaAtual = cat;
+  categoriaAtiva = cat;
   document.querySelectorAll(".btn-nav").forEach(b => b.classList.remove("active"));
-  document.getElementById("btn-" + cat).classList.add("active"); [cite: 15]
-  render(); [cite: 16]
+  document.getElementById("btn-" + cat).classList.add("active");
+  renderizarCardapio();
 }
 
-function render() {
-  const box = document.getElementById("sabores");
-  box.innerHTML = "";
-  cardapio[categoriaAtual].forEach(item => {
-    box.innerHTML += `
+function renderizarCardapio() {
+  const container = document.getElementById("sabores");
+  container.innerHTML = "";
+  cardapio[categoriaAtiva].forEach(item => {
+    container.innerHTML += `
       <div class="item-card">
         <h3>${item.n}</h3>
         <p>${item.d}</p>
         <span class="preco">R$ ${item.p.toFixed(2)}</span>
-        <button class="btn-add" onclick="add('${item.n}', ${item.p})">ADICIONAR AO PEDIDO</button>
+        <button class="btn-add" onclick="adicionarAoCarrinho('${item.n}', ${item.p})">ADICIONAR</button>
       </div>`;
-  }); [cite: 16]
+  });
 }
 
-function add(nome, preco) {
-  itensPedido.push({ nome, preco });
-  totalProdutos += preco;
-  atualizarInterface();
-  alerta("Adicionado!", `${nome} foi incluído.`); [cite: 17, 20]
+function adicionarAoCarrinho(nome, preco) {
+  itensNoCarrinho.push({ nome, preco });
+  valorTotalProdutos += preco;
+  atualizarCarrinhoUI();
+  alerta("Pedido", `${nome} adicionado!`);
 }
 
-function atualizarInterface() {
-  document.getElementById("cart-count").innerText = itensPedido.length;
-  
-  // Atualiza a lista de texto no textarea
-  const resumo = itensPedido.map(i => `• ${i.nome} - R$ ${i.preco.toFixed(2)}`).join('\n');
-  document.getElementById("pedido").value = resumo;
-  
-  atualizarTotalFinal(); [cite: 17]
+function atualizarCarrinhoUI() {
+  document.getElementById("cart-count").innerText = itensNoCarrinho.length;
+  const textoResumo = itensNoCarrinho.map(i => `• ${i.nome} - R$ ${i.preco.toFixed(2)}`).join('\n');
+  document.getElementById("pedido").value = textoResumo;
+  atualizarSomaTotal();
 }
 
-function atualizarTotalComTaxa() {
-  const selectBairro = document.getElementById("bairro");
-  taxaEntrega = parseFloat(selectBairro.value) || 0;
-  atualizarTotalFinal();
-}
-
-function atualizarTotalFinal() {
-  const totalGeral = totalProdutos + taxaEntrega;
+function atualizarSomaTotal() {
+  const totalGeral = valorTotalProdutos + valorTaxaEntrega;
   document.getElementById("total-valor").innerText = totalGeral.toFixed(2);
 }
 
 function mostrarDados(tipo) {
-  tipoPedido = tipo;
-  document.getElementById("entregaCampos").style.display = tipo === "delivery" ? "block" : "none"; [cite: 18]
-  
+  modalidadePedido = tipo;
+  document.getElementById("entregaCampos").style.display = tipo === "delivery" ? "block" : "none";
   document.getElementById("btn-retirar").classList.toggle("active", tipo === "retirar");
   document.getElementById("btn-delivery").classList.toggle("active", tipo === "delivery");
   
   if (tipo === "retirar") {
-    taxaEntrega = 0;
+    valorTaxaEntrega = 0;
     document.getElementById("bairro").value = "0";
   }
-  atualizarTotalFinal(); [cite: 19]
+  atualizarSomaTotal();
+}
+
+function atualizarFrete() {
+  const select = document.getElementById("bairro");
+  valorTaxaEntrega = parseFloat(select.value) || 0;
+  atualizarSomaTotal();
 }
 
 function mostrarTroco() {
-  const pag = document.getElementById("pagamento").value;
-  document.getElementById("valorTroco").style.display = pag === "Dinheiro" ? "block" : "none"; [cite: 19]
+  const p = document.getElementById("pagamento").value;
+  document.getElementById("valorTroco").style.display = p === "Dinheiro" ? "block" : "none";
 }
 
 function editarPedido() {
-  itensPedido = [];
-  totalProdutos = 0;
-  taxaEntrega = 0;
+  itensNoCarrinho = [];
+  valorTotalProdutos = 0;
+  valorTaxaEntrega = 0;
   document.getElementById("obs").value = "";
-  atualizarInterface(); [cite: 17]
+  atualizarCarrinhoUI();
 }
 
 function toggleCarrinho() {
-  document.getElementById("carrinho").classList.toggle("open"); [cite: 18]
+  document.getElementById("carrinho").classList.toggle("open");
 }
 
 function enviarPedido() {
-  if (itensPedido.length === 0) {
-    alerta("Erro", "Seu carrinho está vazio!");
-    return;
-  }
+  if (itensNoCarrinho.length === 0) return alerta("Atenção", "O carrinho está vazio!");
 
   const obs = document.getElementById("obs").value;
   const pag = document.getElementById("pagamento").value;
-  const totalGeral = totalProdutos + taxaEntrega;
+  const total = valorTotalProdutos + valorTaxaEntrega;
   
-  let msg = `*NOVO PEDIDO - MCTONNY*\n\n`;
+  let msg = `*MCTONNY - PEDIDO*\n\n`;
   msg += `*ITENS:*\n${document.getElementById("pedido").value}\n\n`;
-  
   if(obs) msg += `*OBS:* ${obs}\n`;
-  msg += `\n*TOTAL:* R$ ${totalGeral.toFixed(2)}`;
-  msg += `\n*PAGAMENTO:* ${pag}`;
+  msg += `*TOTAL:* R$ ${total.toFixed(2)}\n`;
+  msg += `*PAGAMENTO:* ${pag}\n`;
   
-  if(tipoPedido === "delivery") {
+  if(modalidadePedido === "delivery") {
     const end = document.getElementById("endereco").value;
-    const bairroNome = document.getElementById("bairro").options[document.getElementById("bairro").selectedIndex].text;
-    msg += `\n\n*ENTREGA:* ${end}\n*BAIRRO:* ${bairroNome}`;
+    const bairro = document.getElementById("bairro").options[document.getElementById("bairro").selectedIndex].text;
+    msg += `*ENTREGA:* ${end}\n*BAIRRO:* ${bairro}`;
   } else {
-    msg += `\n\n*RETIRADA NO LOCAL*`;
+    msg += `*RETIRADA NO LOCAL*`;
   }
 
-  if(pag === "Dinheiro") {
-    const troco = document.getElementById("valorTroco").value;
-    msg += `\n*TROCO PARA:* R$ ${troco}`;
-  }
-
-  const fone = "5511943198316"; [cite: 20]
-  window.open(`https://wa.me/${fone}?text=${encodeURIComponent(msg)}`); [cite: 20]
+  window.open(`https://wa.me/5511943198316?text=${encodeURIComponent(msg)}`);
 }
 
 function alerta(t, m) {
@@ -264,3 +172,6 @@ function alerta(t, m) {
 function fecharAlerta() {
   document.getElementById("custom-alert-overlay").style.display = "none";
 }
+
+// Inicia com Lanches
+selecionar("lanches");
