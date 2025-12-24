@@ -38,7 +38,7 @@ header {
 }
 
 .logo-top {
-  width: 250px; /* Altere aqui: 250px é um ótimo tamanho, mas pode testar 300px se quiser maior */
+  width: 300px; /* Altere aqui: 250px é um ótimo tamanho, mas pode testar 300px se quiser maior */
   height: auto;
   border-radius: 0; 
   border: none; 
