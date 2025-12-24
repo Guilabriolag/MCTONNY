@@ -1,76 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>McClone - Cardápio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="McCardapio.css">
+    <meta charset="UTF-8">
+    <title>McTonny - Cardápio Digital</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="McCardapio.css">
 </head>
 <body>
 
 <div class="background-fix"></div>
 
 <header>
-  <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-Ir4F4TvYrzskM6mp1dslF7bvIe0uZxHhjApklssORuUPdSe9EnIdIkSQ7cO8Kk_hfA-HvJsXjdzWlq57a6tP-YEJEx3R0nCKzx2zJ-C-S5WaZs6UqkHlgcIGr_lkZ0mh8i3OTlH0r5cj3brnr-9V2112GW_cUq1sWjIAUZqAfLMKtIy6LizXvIMb6ufc/s724/Clipped_image_20251002_033103.png" class="logo-top">
-  <h1>McClone</h1>
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEid451Ko1owcmZXRDAw47z-UD237K9HuBrGhVI_-1CBasexYPIMsobb7ZNKdaS8AfJqot4vuGP0amIOzfA5Dyfqm7PM7LBML4vqfAWnoaP3zsAj7kXI3Z58WiUdLqoJQUfqgayntHJ1agfD3lMEcwnw-1tWoF1GQwGBNXNy5JULv2c_FhcYr8oR69dkczN_/s1536/copilot_image_1766540362692.jpeg" class="logo-top" alt="McTonny Logo">
+    <h1>McTonny</h1>
 </header>
 
 <nav class="main-nav">
-  <button class="btn-nav active" id="btn-lanches" onclick="selecionar('lanches')">LANCHES</button>
-  <button class="btn-nav" id="btn-porcoes" onclick="selecionar('porcoes')">PORÇÕES</button>
-  <button class="btn-nav" id="btn-beirutes" onclick="selecionar('beirutes')">BEIRUTES</button>
-  <button class="btn-nav" id="btn-bebidas" onclick="selecionar('bebidas')">BEBIDAS</button>
+    <button class="btn-nav active" id="btn-lanches" onclick="selecionar('lanches')">LANCHES</button>
+    <button class="btn-nav" id="btn-porcoes" onclick="selecionar('porcoes')">PORÇÕES</button>
+    <button class="btn-nav" id="btn-beirutes" onclick="selecionar('beirutes')">BEIRUTES</button>
+    <button class="btn-nav" id="btn-bebidas" onclick="selecionar('bebidas')">BEBIDAS</button>
 </nav>
 
 <main id="sabores" class="categoria-container"></main>
 
 <div id="carrinhoToggle" onclick="toggleCarrinho()">
-  🛒 <span id="cart-count">0</span>
+    🛒 <span id="cart-count">0</span>
 </div>
 
 <section id="carrinho">
-  <h2>RESUMO DO PEDIDO</h2>
+    <h2>RESUMO DO PEDIDO</h2>
 
-  <textarea id="pedido" readonly></textarea>
+    <textarea id="pedido" readonly placeholder="Seu carrinho está vazio..."></textarea>
 
-  <div class="carrinho-acoes">
-    <button class="btn-secundario" onclick="editarPedido()">✏️ Editar Pedido</button>
-    <button class="btn-secundario" onclick="toggleCarrinho()">⬅️ Voltar ao Cardápio</button>
-  </div>
+    <div class="campo-adicional">
+        <label for="obs">Observações (Ex: sem cebola, ponto da carne):</label>
+        <input type="text" id="obs" class="input-grande" placeholder="Alguma preferência?">
+    </div>
 
-  <div class="entrega-grid">
-    <button class="btn-opcao-gigante" onclick="mostrarDados('retirar')">VOU RETIRAR</button>
-    <button class="btn-opcao-gigante" onclick="mostrarDados('delivery')">DELIVERY</button>
-  </div>
+    <div class="total-container">
+        <h3>Total: R$ <span id="total-valor">0.00</span></h3>
+    </div>
 
-  <div id="entregaCampos">
-    <input id="endereco" class="input-grande" placeholder="Rua e Número">
-    <select id="bairro" class="input-grande">
-      <option value="">Selecione o Bairro</option>
-      <option>CENTRO - R$ 3</option>
-      <option>JD BOM JESUS - R$ 3</option>
-      <option>GREEN HILLS - R$ 10</option>
+    <div class="carrinho-acoes">
+        <button class="btn-secundario" onclick="editarPedido()">🗑️ Limpar Tudo</button>
+        <button class="btn-secundario" onclick="toggleCarrinho()">⬅️ Continuar Comprando</button>
+    </div>
+
+    <hr style="margin: 20px 0; border: 1px solid #333;">
+
+    <div class="entrega-grid">
+        <button class="btn-opcao-gigante" id="btn-retirar" onclick="mostrarDados('retirar')">VOU RETIRAR</button>
+        <button class="btn-opcao-gigante" id="btn-delivery" onclick="mostrarDados('delivery')">DELIVERY</button>
+    </div>
+
+    <div id="entregaCampos" style="display:none;">
+        <input id="endereco" class="input-grande" placeholder="Rua, número e ponto de referência">
+        
+        <select id="bairro" class="input-grande" onchange="atualizarTotalComTaxa()">
+            <option value="0">Selecione o Bairro (Taxa)</option>
+            <option value="3">CENTRO - R$ 3,00</option>
+            <option value="3">JD BOM JESUS - R$ 3,00</option>
+            <option value="4">MORRO BRANCO - R$ 4,00</option>
+            <option value="10">GREEN HILLS - R$ 10,00</option>
+            <option value="3">VILA NOVA - R$ 3,00</option>
+            <option value="7">PAIOL/ KM 50 - R$ 7,00</option>
+        </select>
+    </div>
+
+    <select id="pagamento" class="input-grande" onchange="mostrarTroco()">
+        <option value="">Forma de Pagamento</option>
+        <option value="Pix">Pix</option>
+        <option value="Cartão">Cartão (Levamos a maquininha)</option>
+        <option value="Dinheiro">Dinheiro</option>
     </select>
-  </div>
 
-  <select id="pagamento" class="input-grande" onchange="mostrarTroco()">
-    <option value="">Forma de Pagamento</option>
-    <option>Pix</option>
-    <option>Cartão</option>
-    <option>Dinheiro</option>
-  </select>
+    <input id="valorTroco" class="input-grande" style="display:none;" placeholder="Troco para quanto?">
 
-  <input id="valorTroco" class="input-grande" placeholder="Troco para quanto?">
-
-  <button id="enviar" onclick="enviarPedido()">FINALIZAR NO WHATSAPP</button>
+    <button id="enviar" onclick="enviarPedido()">✅ FINALIZAR NO WHATSAPP</button>
 </section>
 
 <div id="custom-alert-overlay" class="alert-overlay">
-  <div class="alert-box">
-    <h3 id="alert-title"></h3>
-    <p id="alert-msg"></p>
-    <button class="btn-alert" onclick="fecharAlerta()">OK, ENTENDI</button>
-  </div>
+    <div class="alert-box">
+        <h3 id="alert-title"></h3>
+        <p id="alert-msg"></p>
+        <button class="btn-alert" onclick="fecharAlerta()">OK, ENTENDI</button>
+    </div>
 </div>
 
 <script src="McCardapio.js"></script>
