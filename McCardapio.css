@@ -24,7 +24,7 @@ body {
 .background-fix {
   position: fixed;
   inset: 0;
-  background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYK06B3CPBRBwAoP87PpZzgJC_Y9RycOEQrmIAcJVvG8i1ri0Wwzk7l4TfYmAgttQOZqK9lIOz4VnHj8P7dFOfs2N8nJFOCE8-cL3IFvLGLUyednnL52Rc7UH-26GT6cuUxwDRCbEPc6KnwK9Jrcl0EQh4k76ZHjRYTCmHpYR1u3a15cXvRZcquzEY-rat/s740/burger-de-cima-em-fundo-laranja_23-2148235104.jpg') center/cover;
+  background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiF7VwCJo_kHSA9RoXR_EL7p3K969LU3RWqcMzaIiPmbz4CwLFcKJU_rGnp-9eJ0FPGpbyHrlk01TFgSC9UHd8lEkP-DMjGasvHNK6C25AusOH-z-togKxHpmvqs0PVfJ1_5un_F0sE7kPk2r_Tq4H6RsRzTkwDfmub0v_PFl1cVNDcbtUFo4rdktONjujz/s554/images%20(51).jpeg') center/cover;
   filter: brightness(0.2);
   z-index: -1;
 }
