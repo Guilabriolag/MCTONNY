@@ -54,7 +54,7 @@ const cardapio = {
     { n: "45 – BATATA CHEDDAR", p: 35.00, d: "Porção generosa de batata com cheddar." },
     { n: "46 – CALABRESA ACEBOLADA", p: 40.00, d: "Calabresa fatiada com cebola." },
     { n: "47 – CONTRAFILÉ ACEBOLADO", p: 50.00, d: "Contrafilé em tiras com cebola." }
-  ]
+  ],
   bebidas: [
     { n: "Coca-Cola Lata", p: 6.00, d: "Lata 350ml - Gelada" },
     { n: "Coca-Cola 2L", p: 13.00, d: "Ideal para a família" },
