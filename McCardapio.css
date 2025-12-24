@@ -27,7 +27,7 @@ body {
   position: fixed;
   inset: 0;
   background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiZl1L_GUxSnW2SBMcChsfViUS_eviLezZiHj-EZhH0cwEP4nv2JsUTdCZKQk0bv0NrzIn2vxO8-MGYpICfo1pHAQv8wpU0SkimX5WCvBxrvdygWkZro62UAtAER0e62qsn-corewoc0s2mRf959lhbfcfjV29QNoBH7AU7PPlHEaxQAYGV4qnCZipXUlKX/s678/images%20(52).jpeg') center/cover;
-  filter: brightness(0.36);
+  filter: brightness(0.32);
   z-index: -1;
 }
 
