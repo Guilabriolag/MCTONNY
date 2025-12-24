@@ -5,6 +5,7 @@
   --gray: #1a1a1a;
   --light-gray: #333;
   --white: #ffffff;
+  --green: #25d366; /* Cor do WhatsApp */
 }
 
 * {
@@ -21,96 +22,116 @@ body {
   line-height: 1.6;
 }
 
+/* Fundo Fixo com Brilho Reduzido para Leitura */
 .background-fix {
   position: fixed;
   inset: 0;
   background: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYK06B3CPBRBwAoP87PpZzgJC_Y9RycOEQrmIAcJVvG8i1ri0Wwzk7l4TfYmAgttQOZqK9lIOz4VnHj8P7dFOfs2N8nJFOCE8-cL3IFvLGLUyednnL52Rc7UH-26GT6cuUxwDRCbEPc6KnwK9Jrcl0EQh4k76ZHjRYTCmHpYR1u3a15cXvRZcquzEY-rat/s740/burger-de-cima-em-fundo-laranja_23-2148235104.jpg') center/cover;
-  filter: brightness(0.2);
+  filter: brightness(0.15);
   z-index: -1;
 }
 
-/* Header e Logo */
+/* Header e Logo (Ajustada conforme solicitado) */
 header {
   text-align: center;
-  padding: 30px 20px;
+  padding: 40px 20px 20px;
 }
 
 .logo-top {
-  width: 140px;
-  border-radius: 50%;
-  border: 4px solid var(--yellow);
-  box-shadow: 0 0 20px rgba(255, 188, 13, 0.3);
-  margin-bottom: 10px;
+  width: 180px; /* Logo maior */
+  height: auto;
+  border-radius: 0; /* Sem arredondamento */
+  border: none; /* Sem contorno */
+  box-shadow: none; /* Sem sombra externa */
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 header h1 {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   color: var(--yellow);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  font-weight: 900;
 }
 
-/* Navegação Principal */
+/* Navegação Principal (Sticky para facilitar uso) */
 .main-nav {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  display: flex;
+  overflow-x: auto; /* Permite scroll lateral se os botões não couberem */
+  gap: 10px;
   padding: 15px;
   position: sticky;
   top: 0;
-  background: rgba(10, 10, 10, 0.9);
+  background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(10px);
   z-index: 10;
+  scrollbar-width: none; /* Esconde scroll no Firefox */
 }
 
+.main-nav::-webkit-scrollbar { display: none; } /* Esconde scroll no Chrome/Safari */
+
 .btn-nav {
-  padding: 18px;
-  font-weight: 900;
-  font-size: 0.9rem;
-  border-radius: 12px;
+  flex: 0 0 auto; /* Mantém o tamanho original no scroll lateral */
+  padding: 12px 20px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  border-radius: 50px; /* Estilo pílula */
   background: var(--gray);
   color: var(--white);
-  border: 2px solid var(--light-gray);
+  border: 1px solid var(--light-gray);
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
+  white-space: nowrap;
 }
 
 .btn-nav.active {
   background: var(--red);
   border-color: var(--yellow);
-  transform: scale(0.95);
+  color: var(--white);
 }
 
-/* Containers de Itens */
+/* Grid de Produtos */
 .categoria-container {
   padding: 15px;
-  margin-bottom: 120px; /* Espaço para o botão do carrinho */
+  margin-bottom: 100px;
 }
 
 .item-card {
-  background: rgba(26, 26, 26, 0.8);
-  border-radius: 20px;
+  background: rgba(30, 30, 30, 0.6);
+  border-radius: 15px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border: 1px solid var(--light-gray);
-  border-left: 5px solid var(--red);
+  position: relative;
+  overflow: hidden;
+}
+
+.item-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--red);
 }
 
 .item-card h3 {
   color: var(--yellow);
-  font-size: 1.5rem;
-  margin-bottom: 5px;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
 }
 
 .item-card p {
-  font-size: 1rem;
-  color: #ccc;
+  font-size: 0.95rem;
+  color: #bbb;
   margin-bottom: 15px;
 }
 
 .preco {
-  font-size: 1.6rem;
-  font-weight: 900;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: var(--white);
   display: block;
   margin-bottom: 15px;
@@ -118,41 +139,39 @@ header h1 {
 
 .btn-add {
   width: 100%;
-  padding: 16px;
+  padding: 14px;
   background: var(--yellow);
   color: #000;
   font-weight: 900;
   border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  cursor: pointer;
+  border-radius: 10px;
+  text-transform: uppercase;
 }
 
 /* Carrinho Flutuante */
 #carrinhoToggle {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
-  width: 80px;
-  height: 80px;
+  bottom: 20px;
+  right: 20px;
+  width: 70px;
+  height: 70px;
   background: var(--red);
   border-radius: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
-  box-shadow: 0 5px 25px rgba(219, 0, 7, 0.5);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
   z-index: 99;
-  border: 3px solid var(--yellow);
+  border: 2px solid var(--yellow);
 }
 
 #cart-count {
   font-weight: 900;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
-/* Tela de Finalização (Carrinho Aberto) */
+/* Tela do Carrinho (Modal) */
 #carrinho {
   position: fixed;
   top: 100%;
@@ -160,137 +179,103 @@ header h1 {
   width: 100%;
   height: 100%;
   background: var(--dark);
-  padding: 25px;
-  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px;
+  transition: 0.4s ease-out;
   overflow-y: auto;
   z-index: 100;
 }
 
-#carrinho.open {
-  top: 0;
-}
+#carrinho.open { top: 0; }
 
 #carrinho h2 {
   text-align: center;
   color: var(--yellow);
   margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 
 textarea {
   width: 100%;
-  height: 180px;
-  background: var(--gray);
-  color: #fff;
+  height: 150px;
+  background: #111;
+  color: #eee;
   border: 1px solid var(--light-gray);
-  border-radius: 12px;
-  padding: 15px;
-  font-size: 1rem;
+  border-radius: 10px;
+  padding: 12px;
+  font-family: monospace;
   margin-bottom: 15px;
   resize: none;
 }
 
-/* Novo Campo de Observação e Total */
-.campo-adicional label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-  color: var(--yellow);
-}
-
+/* Campos de Total e Opções */
 .total-container {
   background: var(--gray);
-  padding: 15px;
+  padding: 20px;
   border-radius: 12px;
-  text-align: right;
-  margin: 15px 0;
-  border: 1px dashed var(--yellow);
+  text-align: center;
+  margin: 20px 0;
+  border: 2px dashed var(--red);
 }
 
 .total-container h3 {
-  font-size: 1.5rem;
-  color: var(--white);
+  font-size: 1.8rem;
 }
 
 #total-valor {
   color: var(--yellow);
 }
 
-.carrinho-acoes {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-secundario {
-  flex: 1;
+.input-grande {
+  width: 100%;
   padding: 15px;
-  font-weight: 700;
+  margin-bottom: 12px;
   border-radius: 10px;
-  background: var(--light-gray);
+  border: 1px solid var(--light-gray);
+  background: #000;
   color: #fff;
-  border: none;
-  cursor: pointer;
+  font-size: 1rem;
 }
 
-/* Entrega e Opções */
 .entrega-grid {
   display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
 .btn-opcao-gigante {
   flex: 1;
-  height: 80px;
-  font-weight: 900;
-  border-radius: 15px;
-  border: 2px solid var(--light-gray);
+  padding: 15px;
+  font-weight: 800;
+  border-radius: 10px;
+  border: 1px solid var(--light-gray);
   background: var(--gray);
   color: #fff;
-  cursor: pointer;
 }
 
 .btn-opcao-gigante.active {
   background: var(--red);
   border-color: var(--yellow);
-  box-shadow: 0 0 15px rgba(255, 188, 13, 0.4);
-}
-
-.input-grande {
-  width: 100%;
-  padding: 18px;
-  margin-bottom: 15px;
-  border-radius: 12px;
-  border: 2px solid var(--light-gray);
-  background: #000;
-  color: #fff;
-  font-size: 1.1rem;
-}
-
-.input-grande:focus {
-  border-color: var(--yellow);
-  outline: none;
 }
 
 #enviar {
   width: 100%;
-  padding: 22px;
-  font-size: 1.3rem;
-  font-weight: 900;
-  background: #25d366; /* Cor oficial WhatsApp */
+  padding: 20px;
+  background: var(--green);
   color: #fff;
   border: none;
-  border-radius: 15px;
-  margin-top: 20px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  margin-top: 10px;
+  margin-bottom: 50px;
 }
 
-/* Alertas */
+/* Alert Box */
 .alert-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.9);
   display: none;
   justify-content: center;
   align-items: center;
@@ -298,22 +283,20 @@ textarea {
 }
 
 .alert-box {
-  width: 85%;
-  max-width: 400px;
+  width: 80%;
   padding: 30px;
   background: var(--gray);
   border-radius: 20px;
-  border: 2px solid var(--yellow);
   text-align: center;
+  border: 1px solid var(--yellow);
 }
 
 .btn-alert {
   width: 100%;
-  padding: 15px;
-  background: var(--red);
-  color: #fff;
+  padding: 12px;
+  background: var(--yellow);
   border: none;
-  border-radius: 12px;
-  font-weight: 900;
+  border-radius: 8px;
   margin-top: 15px;
+  font-weight: 900;
 }
